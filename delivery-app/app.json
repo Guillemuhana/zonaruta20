@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Zona Ruta 20",
+    "slug": "zona-ruta-20",
+    "version": "1.0.0",
+    "scheme": "zonaruta20",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F172A"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Necesitamos tu ubicacion para asignar y seguir pedidos en tiempo real.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Necesitamos tu ubicacion para compartir tu posicion mientras realizas una entrega."
+      }
+    },
+    "android": {
+      "permissions": [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAFGK84fLrJ1nFW7Grnt0QnkSFS7qC2hno"
+        }
+      },
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo.png",
+        "backgroundColor": "#0F172A"
+      }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Permite compartir tu ubicacion durante las entregas."
+        }
+      ]
+    ],
+    "icon": "./assets/logo.png"
+  }
+}
