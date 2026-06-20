@@ -49,6 +49,31 @@ where id = (select id from auth.users where email = 'leandro@zonaruta20.com');
 
 3. Cerrá sesión y volvé a entrar. Ahora ve el panel de admin completo.
 
+> ⚠️ **Si creás el admin insertando a mano en `auth.users`** (en vez de registrarlo desde la
+> app), el login puede fallar con error 500 `unexpected_failure`. Es porque Supabase espera
+> que las columnas de tokens estén en `''` y no en `NULL`. Arreglo:
+>
+> ```sql
+> update auth.users set
+>   confirmation_token = coalesce(confirmation_token, ''),
+>   recovery_token = coalesce(recovery_token, ''),
+>   email_change = coalesce(email_change, ''),
+>   email_change_token_new = coalesce(email_change_token_new, ''),
+>   email_change_token_current = coalesce(email_change_token_current, ''),
+>   phone_change = coalesce(phone_change, ''),
+>   phone_change_token = coalesce(phone_change_token, ''),
+>   reauthentication_token = coalesce(reauthentication_token, '')
+> where email = 'EL_EMAIL_DEL_ADMIN';
+> ```
+
+## 📲 Distribución (Android)
+
+- **Página de descarga (para repartir):** https://guillemuhana.github.io/zonaruta20/
+  (vive en `../docs/index.html`, publicada con GitHub Pages desde `main` → `/docs`).
+- **Generar un APK nuevo:** `eas build -p android --profile preview`
+  Después actualizá la URL del `.apk` en `docs/index.html` (el link de la página no cambia).
+- **Play Store (futuro):** `eas build -p android --profile production` genera el `.aab`.
+
 ## Estructura
 
 ```
